@@ -72,22 +72,22 @@ namespace Weld_Mill_Calculation_Tools
             }
             else
             {
-                double timeLeftMin = stripLengthInInch / millSpeedText;
-                double timeLeftHours = timeLeftMin / 60;
+                double timeLeftMin = Math.Round((stripLengthInInch / millSpeedText), 0);
+                //double timeLeftHours = TimeSpan.FromMinutes(timeLeftMin);
 
                 outputBox.Inlines.Add("Time remaining in min: ");
-                outputBox.Inlines.Add(Math.Round(timeLeftMin, 2).ToString());
+                outputBox.Inlines.Add(timeLeftMin.ToString());
                 outputBox.Inlines.Add(new LineBreak());
                 outputBox.Inlines.Add("Time remaining in hours: ");
-                outputBox.Inlines.Add(Math.Round(timeLeftHours, 2).ToString());
+                outputBox.Inlines.Add(TimeSpan.FromMinutes(timeLeftMin).ToString());
                 outputBox.Inlines.Add(new LineBreak());
             }
 
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void doCalculateResults ()
         {
-            
+
             outputBox.Text = string.Empty;
 
             string stripWallText = stripWallNumber.Text;    //get whats stored int the input box
@@ -95,7 +95,7 @@ namespace Weld_Mill_Calculation_Tools
             string coilMeasureText = coilMeasureNumber.Text;
             string millSpeedText = millSpeedNumber.Text;
 
-            outputBox.Inlines.Add("Strip wall: ");
+            outputBox.Inlines.Add("Strip wall: ");  //printing
             outputBox.Inlines.Add(stripWallText);
             outputBox.Inlines.Add(new LineBreak());
             outputBox.Inlines.Add("Strip width: ");
@@ -108,9 +108,20 @@ namespace Weld_Mill_Calculation_Tools
             outputBox.Inlines.Add(millSpeedText);
             outputBox.Inlines.Add(new LineBreak());
 
-            calcCoilLeght((Convert.ToDouble(stripWallText)), (Convert.ToDouble(stripWidthText)), (Convert.ToDouble(coilMeasureText)), (Convert.ToDouble(millSpeedText)));
-            
+            calcCoilLeght((Convert.ToDouble(stripWallText)), (Convert.ToDouble(stripWidthText)), (Convert.ToDouble(coilMeasureText)), (Convert.ToDouble(millSpeedText))); //calls actual calculation function
 
+        }
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            doCalculateResults();
+        }
+
+        private void OnKeyDownHandler(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return) //from learn.microsoft
+            {
+                doCalculateResults();
+            }
         }
 
         private void TextChanged(object sender, TextChangedEventArgs e)

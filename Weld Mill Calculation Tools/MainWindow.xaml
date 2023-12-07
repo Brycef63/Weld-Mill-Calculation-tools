@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Weld_Mill_Calculation_Tools"
         xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
         mc:Ignorable="d"
-        Title="Weld Mill Tools" Height="450" Width="450">
+        Title="Weld Mill Tools" Height="450" Width="450" KeyDown="OnKeyDownHandler">
 
 
     
