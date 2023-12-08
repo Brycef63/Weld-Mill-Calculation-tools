@@ -35,15 +35,8 @@
         <TextBox Grid.Row="2" Grid.Column="2" TextAlignment="Right" Margin="0, 5, 0, 5" Name="stripWidthNumber" TextChanged="TextChanged"  GotFocus="TextBox_GotFocus">0</TextBox>
         <TextBox Grid.Row="3" Grid.Column="0" BorderThickness="0" HorizontalAlignment="Left" VerticalAlignment="Center" IsReadOnly="True" KeyboardNavigation.IsTabStop="False">Coil Measure</TextBox>
         <TextBox Grid.Row="3" Grid.Column="2" TextAlignment="Right" Margin="0, 5, 0, 5" Name="coilMeasureNumber" TextChanged="TextChanged" GotFocus="TextBox_GotFocus">0</TextBox>
-        <RadioButton Grid.Row="4" Grid.Column="0" GroupName="cardboardPicking" Name="cardboardIn21" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5, 10, 10, 10">
-            Cardboard (21" ID)
-        </RadioButton>
-        <RadioButton Grid.Row="4" Grid.Column="1" GroupName="cardboardPicking" Name="cardboardIn22" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5, 10, 10, 10">
-            Cardboard (22" ID)
-        </RadioButton>
-        <RadioButton Grid.Row="4" Grid.Column="2" GroupName="cardboardPicking" Name="cardboardIn20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,10,0,10" IsChecked="True">
-             No Cardboard (20" ID)
-        </RadioButton>
+        <TextBox Grid.Row="4" Grid.Column="0" BorderThickness="0" HorizontalAlignment="Left" VerticalAlignment="Center" IsReadOnly="True" KeyboardNavigation.IsTabStop="False">ID Measure (Default 20)</TextBox>
+        <TextBox Grid.Row="4" Grid.Column="2" TextAlignment="Right" Margin="0, 5, 0, 5" Name="coilInnerDiameterNumber" TextChanged="TextChanged" KeyboardNavigation.IsTabStop="False">20</TextBox>
         <TextBox Grid.Row="5" Grid.ColumnSpan="2" BorderThickness="0" HorizontalAlignment="Left" VerticalAlignment="Center" IsReadOnly="True" KeyboardNavigation.IsTabStop="False">Mill Speed (Optional)</TextBox>
         <TextBox Grid.Row="5" Grid.Column="2" TextAlignment="Right" Margin="0, 5, 0, 5" Name="millSpeedNumber" TextChanged="TextChanged" GotFocus="TextBox_GotFocus">0</TextBox>
         <Button Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" Click="Button_Click" >Results</Button>

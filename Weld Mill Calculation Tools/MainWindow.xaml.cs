@@ -30,28 +30,17 @@ namespace Weld_Mill_Calculation_Tools
             InitializeComponent();
         }
 
-        public void calcCoilLeght(double stripWallNumberFromBox, double stripWidthNumberFromBox, double coilMeasureNumberFromBox, double millSpeedText = 0)
+        
+       
+
+        public void calcCoilLeght(double stripWallNumberFromBox, double stripWidthNumberFromBox, double coilMeasureNumberFromBox, double millSpeedText, double coilInnerDiameter)
         {
             double defaultSteelDensity = 0.289;    //lb/in3 standard for 304 steel
-            int defaultCoilInnerDiameter = 20; //standard coil ID is 20in 
-
-            //checks if there is carboard in the coil
-            if (cardboardIn22.IsChecked == true)
-            {
-                defaultCoilInnerDiameter += 1;
-                outputBox.Inlines.Add("Has cardboard liner: True");
-                outputBox.Inlines.Add(new LineBreak());
-            }
-            else
-            {
-                outputBox.Inlines.Add("Has cardboard liner: False");
-                outputBox.Inlines.Add(new LineBreak());
-            }
 
             //doing the calculations
-            double outerCoilDiameter = (2 * coilMeasureNumberFromBox + (defaultCoilInnerDiameter));
-            double numberOfTurns = (outerCoilDiameter - defaultCoilInnerDiameter) / (2 * stripWallNumberFromBox); //gives number of turns on the coil
-            double stripLengthInInch = Math.PI * numberOfTurns * (outerCoilDiameter + defaultCoilInnerDiameter) / 2;  // should give the length in inches
+            double outerCoilDiameter = (2 * coilMeasureNumberFromBox + (coilInnerDiameter));
+            double numberOfTurns = (outerCoilDiameter - coilInnerDiameter) / (2 * stripWallNumberFromBox); //gives number of turns on the coil
+            double stripLengthInInch = Math.PI * numberOfTurns * (outerCoilDiameter + coilInnerDiameter) / 2;  // should give the length in inches
             double stripLengthInFeet = stripLengthInInch / 12;  //gets length in feet
             double stripWeight = stripLengthInInch * stripWidthNumberFromBox * stripWallNumberFromBox * defaultSteelDensity;    //should give the weight in pounds
 
@@ -73,19 +62,20 @@ namespace Weld_Mill_Calculation_Tools
             else
             {
                 double timeLeftMin = Math.Round((stripLengthInInch / millSpeedText), 0);
-                //double timeLeftHours = TimeSpan.FromMinutes(timeLeftMin);
+                string timeLeftHours = TimeSpan.FromMinutes(timeLeftMin).ToString("h\\:mm");
+                
 
                 outputBox.Inlines.Add("Time remaining in min: ");
                 outputBox.Inlines.Add(timeLeftMin.ToString());
                 outputBox.Inlines.Add(new LineBreak());
                 outputBox.Inlines.Add("Time remaining in hours: ");
-                outputBox.Inlines.Add(TimeSpan.FromMinutes(timeLeftMin).ToString());
-                outputBox.Inlines.Add(new LineBreak());
+                outputBox.Inlines.Add(timeLeftHours);
+                //outputBox.Inlines.Add(new LineBreak());
             }
 
         }
 
-        private void doCalculateResults ()
+        public void doCalculateResults ()
         {
 
             outputBox.Text = string.Empty;
@@ -93,9 +83,16 @@ namespace Weld_Mill_Calculation_Tools
             string stripWallText = stripWallNumber.Text;    //get whats stored int the input box
             string stripWidthText = stripWidthNumber.Text;
             string coilMeasureText = coilMeasureNumber.Text;
+            string coilInnerDiameterText = coilInnerDiameterNumber.Text;
             string millSpeedText = millSpeedNumber.Text;
 
-            outputBox.Inlines.Add("Strip wall: ");  //printing
+            textBoxEmptyCheck(stripWidthText);  //validating entry
+            textBoxEmptyCheck(stripWallText);
+            textBoxEmptyCheck(coilMeasureText);
+            textBoxEmptyCheck(coilInnerDiameterText);
+            textBoxEmptyCheck(millSpeedText);
+
+           /* outputBox.Inlines.Add("Strip wall: ");  //printing
             outputBox.Inlines.Add(stripWallText);
             outputBox.Inlines.Add(new LineBreak());
             outputBox.Inlines.Add("Strip width: ");
@@ -104,15 +101,19 @@ namespace Weld_Mill_Calculation_Tools
             outputBox.Inlines.Add("Coil measure: ");
             outputBox.Inlines.Add(coilMeasureText);
             outputBox.Inlines.Add(new LineBreak());
+            outputBox.Inlines.Add("Coil ID measure: ");
+            outputBox.Inlines.Add(coilInnerDiameterText);
+            outputBox.Inlines.Add(new LineBreak());
             outputBox.Inlines.Add("Mill speed: ");
             outputBox.Inlines.Add(millSpeedText);
-            outputBox.Inlines.Add(new LineBreak());
+            outputBox.Inlines.Add(new LineBreak());*/
 
-            calcCoilLeght((Convert.ToDouble(stripWallText)), (Convert.ToDouble(stripWidthText)), (Convert.ToDouble(coilMeasureText)), (Convert.ToDouble(millSpeedText))); //calls actual calculation function
+            calcCoilLeght((Convert.ToDouble(stripWallText)), (Convert.ToDouble(stripWidthText)), (Convert.ToDouble(coilMeasureText)), (Convert.ToDouble(millSpeedText)), (Convert.ToDouble(coilInnerDiameterText))); //calls actual calculation function
 
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            
             doCalculateResults();
         }
 
@@ -156,14 +157,36 @@ namespace Weld_Mill_Calculation_Tools
             textBox.Text = newText;
             //set the caret to the end of text
             textBox.CaretIndex = newText.Length;
+            
         }
 
         public void TextBox_GotFocus(object sender, RoutedEventArgs e)
         {
+            
             // coppied from stackoverflow
             TextBox tb = (TextBox)sender;
-            tb.Text = string.Empty;
-            tb.GotFocus -= TextBox_GotFocus; //removes the reset so texts stays on next click
+            if (tb.Text == "0" )
+            {
+                tb.Text = string.Empty;
+            }
+            tb.SelectAll();
+            //tb.GotFocus -= TextBox_GotFocus; //removes the reset so texts stays on next click
+        }
+
+        
+
+        private void textBoxEmptyCheck (string checkThisIsAValidEntry)
+        {
+             if (string.IsNullOrEmpty(checkThisIsAValidEntry))
+             {
+                MessageBox.Show("Please fill all entry fields.", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+             }
+             else
+             {
+                return;
+             }
+
         }
 
     }
