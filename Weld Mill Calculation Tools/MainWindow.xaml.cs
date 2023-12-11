@@ -189,5 +189,10 @@ namespace Weld_Mill_Calculation_Tools
 
         }
 
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            Window redrawLenCalcWindow = new Window();
+            redrawLenCalcWindow.ShowDialog();  
+        }
     }
 }

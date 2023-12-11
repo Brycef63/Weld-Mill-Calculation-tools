@@ -9,7 +9,7 @@
         Title="Weld Mill Tools" Height="450" Width="450" KeyDown="OnKeyDownHandler">
 
 
-    
+
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -25,10 +25,10 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
-          
         </Grid.ColumnDefinitions>
         
-        <Label Grid.ColumnSpan="3" HorizontalAlignment="Center">Coil Calculator</Label>
+        <Label Grid.ColumnSpan="1" HorizontalAlignment="Center">Coil Calculator</Label>
+        <Button Grid.Column="1" Grid.Row="0" Click="Button_Click_1" >Calculate Redraw Length</Button>
         <TextBox Grid.Row="1" Grid.Column="0" BorderThickness="0" HorizontalAlignment="Left" VerticalAlignment="Center" IsReadOnly="True" KeyboardNavigation.IsTabStop="False">Strip Wall</TextBox>
         <TextBox Grid.Row="1" Grid.Column="2" TextAlignment="Right" Margin="0, 5, 0, 5"  Name="stripWallNumber" TextChanged="TextChanged" GotFocus="TextBox_GotFocus">0</TextBox>
         <TextBox Grid.Row="2" Grid.Column="0" BorderThickness="0" HorizontalAlignment="Left" VerticalAlignment="Center" IsReadOnly="True" KeyboardNavigation.IsTabStop="False">Strip Width</TextBox>
