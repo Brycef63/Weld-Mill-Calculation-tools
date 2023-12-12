@@ -30,7 +30,7 @@
         <TextBox Grid.Row="0" Grid.Column="2" TextAlignment="Right" Margin="0, 5, 0, 5"  Name="fiveFootTubeWeight" TextChanged="TextChanged" GotFocus="TextBox_GotFocus">0</TextBox>
         <TextBox Grid.Row="1" Grid.Column="2" TextAlignment="Right" Margin="0, 5, 0, 5"  Name="millOrderTubeWeight" TextChanged="TextChanged" GotFocus="TextBox_GotFocus">0</TextBox>
         <TextBox Grid.Row="2" Grid.Column="2" TextAlignment="Right" Margin="0, 5, 0, 5"  Name="extraToAddToLength" TextChanged="TextChanged" GotFocus="TextBox_GotFocus">0</TextBox>
-        <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Name="findRedrawTubeCorrectedWeight" Click="findRedrawTubeCorrectedWeight_Click" IsDefault="True">Get Length</Button>
+        <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Name="findRedrawTubeCorrectedWeight" Click="FindRedrawTubeCorrectedWeight_Click" IsDefault="True">Get Length</Button>
         <Border Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" BorderThickness="1" BorderBrush="Black" Margin="0, 5, 0, 5">
             <TextBlock Name="redrawLengthOutputBox" Height="50" TextAlignment="Justify"></TextBlock>
         </Border>

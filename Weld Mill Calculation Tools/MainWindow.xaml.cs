@@ -33,7 +33,7 @@ namespace Weld_Mill_Calculation_Tools
         
        
 
-        public void calcCoilLeght(double stripWallNumberFromBox, double stripWidthNumberFromBox, double coilMeasureNumberFromBox, double millSpeedText, double coilInnerDiameter)
+        public void CalcCoilLeght(double stripWallNumberFromBox, double stripWidthNumberFromBox, double coilMeasureNumberFromBox, double millSpeedText, double coilInnerDiameter)
         {
             double defaultSteelDensity = 0.289;    //lb/in3 standard for 304 steel
 
@@ -75,24 +75,18 @@ namespace Weld_Mill_Calculation_Tools
 
         }
 
-        public void doCalculateResults ()
+        public void DoCalculateResults ()
         {
 
             outputBox.Text = string.Empty;
 
-            string stripWallText = stripWallNumber.Text;    //get whats stored int the input box
-            string stripWidthText = stripWidthNumber.Text;
-            string coilMeasureText = coilMeasureNumber.Text;
-            string coilInnerDiameterText = coilInnerDiameterNumber.Text;
-            string millSpeedText = millSpeedNumber.Text;
+            string stripWallText = TextBoxEmptyCheck(stripWallNumber.Text);    //get whats stored int the input box
+            string stripWidthText = TextBoxEmptyCheck(stripWidthNumber.Text);
+            string coilMeasureText = TextBoxEmptyCheck(coilMeasureNumber.Text);
+            string coilInnerDiameterText = TextBoxEmptyCheck(coilInnerDiameterNumber.Text);
+            string millSpeedText = TextBoxEmptyCheck(millSpeedNumber.Text);
 
-            textBoxEmptyCheck(stripWidthText);  //validating entry
-            textBoxEmptyCheck(stripWallText);
-            textBoxEmptyCheck(coilMeasureText);
-            textBoxEmptyCheck(coilInnerDiameterText);
-            textBoxEmptyCheck(millSpeedText);
-
-           /* outputBox.Inlines.Add("Strip wall: ");  //prints the inputs
+            /*outputBox.Inlines.Add("Strip wall: ");  //prints the inputs
             outputBox.Inlines.Add(stripWallText);
             outputBox.Inlines.Add(new LineBreak());
             outputBox.Inlines.Add("Strip width: ");
@@ -108,14 +102,10 @@ namespace Weld_Mill_Calculation_Tools
             outputBox.Inlines.Add(millSpeedText);
             outputBox.Inlines.Add(new LineBreak());*/
 
-            calcCoilLeght((Convert.ToDouble(stripWallText)), (Convert.ToDouble(stripWidthText)), (Convert.ToDouble(coilMeasureText)), (Convert.ToDouble(millSpeedText)), (Convert.ToDouble(coilInnerDiameterText))); //calls actual calculation function
+            CalcCoilLeght(Convert.ToDouble(stripWallText), Convert.ToDouble(stripWidthText), (Convert.ToDouble(coilMeasureText)), (Convert.ToDouble(millSpeedText)), (Convert.ToDouble(coilInnerDiameterText))); //calls actual calculation function
 
         }
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            
-            doCalculateResults();
-        }
+        private void Button_Click(object sender, RoutedEventArgs e) => DoCalculateResults();
 
         public void TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -165,26 +155,23 @@ namespace Weld_Mill_Calculation_Tools
             //tb.GotFocus -= TextBox_GotFocus; //removes the reset so texts stays on next click
         }
 
-        
-
-        public void textBoxEmptyCheck (string checkThisIsAValidEntry)
+        public static string TextBoxEmptyCheck(string checkThisIsAValidEntry)
         {
-             if (string.IsNullOrEmpty(checkThisIsAValidEntry))
-             {
+            if (string.IsNullOrEmpty(checkThisIsAValidEntry))
+            {
                 MessageBox.Show("Please fill all entry fields.", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
-                return;
-             }
-             else
-             {
-                return;
-             }
-
+                return "0";
+            }
+            else
+            {
+                return checkThisIsAValidEntry;
+            }        
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             redrawLenCalcWindow secondWindow = new redrawLenCalcWindow();
-            secondWindow.ShowDialog();  
+            secondWindow.Show();  
         }
     }
 }

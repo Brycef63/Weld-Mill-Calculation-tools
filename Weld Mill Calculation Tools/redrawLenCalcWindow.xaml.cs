@@ -19,10 +19,7 @@ namespace Weld_Mill_Calculation_Tools
     /// </summary>
     public partial class redrawLenCalcWindow : Window
     {
-        public redrawLenCalcWindow()
-        {
-            InitializeComponent();
-        }
+        public redrawLenCalcWindow() => InitializeComponent();
 
         private void TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -74,23 +71,32 @@ namespace Weld_Mill_Calculation_Tools
 
 
 
-        private void textBoxEmptyCheck(string checkThisIsAValidEntry)
+        public static string TextBoxEmptyCheck(string checkThisIsAValidEntry)
         {
             if (string.IsNullOrEmpty(checkThisIsAValidEntry))
             {
                 MessageBox.Show("Please fill all entry fields.", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
-                return;
+                return "0";
             }
             else
             {
-                return;
+                return checkThisIsAValidEntry;
             }
-
         }
 
-        private void findRedrawTubeCorrectedWeight_Click(object sender, RoutedEventArgs e)
+        private void FindRedrawTubeCorrectedWeight_Click(object sender, RoutedEventArgs e)
         {
+            redrawLengthOutputBox.Text = string.Empty;  //empty output box
 
+            string fiveFootTubeWeightString = TextBoxEmptyCheck(fiveFootTubeWeight.Text);  //get inputs
+            string millOrderTubeWeightString = TextBoxEmptyCheck(millOrderTubeWeight.Text);
+            string extraToAddToLengthString = TextBoxEmptyCheck(extraToAddToLength.Text);
+
+            double finalLength = ((Convert.ToDouble(millOrderTubeWeightString)/Convert.ToDouble(fiveFootTubeWeightString))*5.00) + Convert.ToDouble(extraToAddToLengthString);    //gets the final length
+
+            redrawLengthOutputBox.Inlines.Add("Weight corrected redraw footage: "); //outputs the results
+            redrawLengthOutputBox.Inlines.Add(Convert.ToString(Math.Round(finalLength, 2)));
+            
         }
     }
 }
