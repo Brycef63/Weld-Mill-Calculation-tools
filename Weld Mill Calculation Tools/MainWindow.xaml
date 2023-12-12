@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Weld_Mill_Calculation_Tools"
         xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
         mc:Ignorable="d"
-        Title="Weld Mill Tools" Height="450" Width="450" KeyDown="OnKeyDownHandler">
+        Title="Weld Mill Tools" Height="450" Width="450" >
 
 
 
@@ -39,7 +39,7 @@
         <TextBox Grid.Row="4" Grid.Column="2" TextAlignment="Right" Margin="0, 5, 0, 5" Name="coilInnerDiameterNumber" TextChanged="TextChanged" KeyboardNavigation.IsTabStop="False">20</TextBox>
         <TextBox Grid.Row="5" Grid.ColumnSpan="2" BorderThickness="0" HorizontalAlignment="Left" VerticalAlignment="Center" IsReadOnly="True" KeyboardNavigation.IsTabStop="False">Mill Speed (Optional)</TextBox>
         <TextBox Grid.Row="5" Grid.Column="2" TextAlignment="Right" Margin="0, 5, 0, 5" Name="millSpeedNumber" TextChanged="TextChanged" GotFocus="TextBox_GotFocus">0</TextBox>
-        <Button Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" Click="Button_Click" >Results</Button>
+        <Button Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" Click="Button_Click" IsDefault="True">Results</Button>
         <Border Grid.Row="7" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="3" BorderThickness="1" BorderBrush="Black" Margin="0, 5, 0, 5">
         <TextBlock Name="outputBox" Height="150" TextAlignment="Justify" ></TextBlock>
         </Border>

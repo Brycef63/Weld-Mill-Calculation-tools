@@ -5,10 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Weld_Mill_Calculation_Tools"
         mc:Ignorable="d"
-        Title="redraw Lenght Calculator" Height="150" Width="250">
+        Title="redraw Lenght Calculator" Height="225" Width="250" >
+    
+
    
     <Grid Margin="10">
        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -24,6 +27,12 @@
         <TextBox Grid.Column="0" Grid.Row="0" BorderThickness="0" HorizontalAlignment="Left" VerticalAlignment="Center" IsReadOnly="True" KeyboardNavigation.IsTabStop="False">5 foot weight</TextBox>
         <TextBox Grid.Column="0" Grid.Row="1" BorderThickness="0" HorizontalAlignment="Left" VerticalAlignment="Center" IsReadOnly="True" KeyboardNavigation.IsTabStop="False">Mill order weight</TextBox>
         <TextBox Grid.Column="0" Grid.Row="2" BorderThickness="0" HorizontalAlignment="Left" VerticalAlignment="Center" IsReadOnly="True" KeyboardNavigation.IsTabStop="False">Extra to add</TextBox>
-    
+        <TextBox Grid.Row="0" Grid.Column="2" TextAlignment="Right" Margin="0, 5, 0, 5"  Name="fiveFootTubeWeight" TextChanged="TextChanged" GotFocus="TextBox_GotFocus">0</TextBox>
+        <TextBox Grid.Row="1" Grid.Column="2" TextAlignment="Right" Margin="0, 5, 0, 5"  Name="millOrderTubeWeight" TextChanged="TextChanged" GotFocus="TextBox_GotFocus">0</TextBox>
+        <TextBox Grid.Row="2" Grid.Column="2" TextAlignment="Right" Margin="0, 5, 0, 5"  Name="extraToAddToLength" TextChanged="TextChanged" GotFocus="TextBox_GotFocus">0</TextBox>
+        <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Name="findRedrawTubeCorrectedWeight" Click="findRedrawTubeCorrectedWeight_Click" IsDefault="True">Get Length</Button>
+        <Border Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" BorderThickness="1" BorderBrush="Black" Margin="0, 5, 0, 5">
+            <TextBlock Name="redrawLengthOutputBox" Height="50" TextAlignment="Justify"></TextBlock>
+        </Border>
     </Grid>
 </Window>

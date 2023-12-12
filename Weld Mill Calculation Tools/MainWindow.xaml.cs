@@ -92,7 +92,7 @@ namespace Weld_Mill_Calculation_Tools
             textBoxEmptyCheck(coilInnerDiameterText);
             textBoxEmptyCheck(millSpeedText);
 
-           /* outputBox.Inlines.Add("Strip wall: ");  //printing
+           /* outputBox.Inlines.Add("Strip wall: ");  //prints the inputs
             outputBox.Inlines.Add(stripWallText);
             outputBox.Inlines.Add(new LineBreak());
             outputBox.Inlines.Add("Strip width: ");
@@ -117,15 +117,7 @@ namespace Weld_Mill_Calculation_Tools
             doCalculateResults();
         }
 
-        private void OnKeyDownHandler(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Return) //from learn.microsoft
-            {
-                doCalculateResults();
-            }
-        }
-
-        private void TextChanged(object sender, TextChangedEventArgs e)
+        public void TextChanged(object sender, TextChangedEventArgs e)
         {
             // coppied from stackoverflow
             //get the textbox that fired the event
@@ -175,7 +167,7 @@ namespace Weld_Mill_Calculation_Tools
 
         
 
-        private void textBoxEmptyCheck (string checkThisIsAValidEntry)
+        public void textBoxEmptyCheck (string checkThisIsAValidEntry)
         {
              if (string.IsNullOrEmpty(checkThisIsAValidEntry))
              {
@@ -191,8 +183,8 @@ namespace Weld_Mill_Calculation_Tools
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            Window redrawLenCalcWindow = new Window();
-            redrawLenCalcWindow.ShowDialog();  
+            redrawLenCalcWindow secondWindow = new redrawLenCalcWindow();
+            secondWindow.ShowDialog();  
         }
     }
 }
