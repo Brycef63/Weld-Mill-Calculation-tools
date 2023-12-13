@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Metadata;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -170,8 +171,23 @@ namespace Weld_Mill_Calculation_Tools
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            redrawLenCalcWindow secondWindow = new redrawLenCalcWindow();
-            secondWindow.Show();  
+
+            bool isWindowOpen = false;  //found on stackoverflow
+
+            foreach (Window w in Application.Current.Windows)
+            {
+                if (w is redrawLenCalcWindow)
+                {
+                    isWindowOpen = true;
+                    w.Activate();
+                }
+            }
+
+            if (!isWindowOpen)
+            {
+                redrawLenCalcWindow newwindow = new redrawLenCalcWindow();
+                newwindow.Show();
+            }
         }
     }
 }
